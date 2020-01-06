@@ -1,7 +1,6 @@
 // ### Hints
 
 // * Store your questions as an array of objects in a separate file, `questions.js`, that follows this format:
-alert("connected");
 // ```js
 let questions = [
   {

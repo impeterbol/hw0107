@@ -1,46 +1,169 @@
-let timeCount = document.querySelector("#timeCount");
-
-let q = document.querySelector(".question");
-let r = document.querySelector("#result");
-let submitButton = document.querySelector("#submit");
 let startButton = document.querySelector("#start");
 
+let quiz = {
 
+    // quiz.create() - creates the quiz
+    create: function(){
+    
+        //getting the HTML quiz element
+        let wrapper = document.getElementById("quiz-wrap");
 
+        // looping through the questions to create HTML elements
+        for (let index in questions) {
 
-//listening to start the quiz
-startButton.addEventListener("click",startQuiz);
+            //adding let for the current question
+            let number = parseInt(index) +1; 
+            //adding a div to hold the current question
+            let qwrap = document.createElement("div");
+            //adding a CSS class for styling
+            qwrap.classList.add("question");
 
-//adding a quiz question function 
-function startQuiz(){
-    //time count starts from 75 and minuses every sec
-    function counter() {
-        var counter = 76;
-        setInterval(function(){
-            if (counter ==0 ) {clearInterval(this)}
-            else {timeCount.textContent=--counter};
-        }, 1000);
-     };
-    counter();
+            // adding a question to the h1 header
+            let question = document.createElement("h1");
+            question.innerHTML = number + ") " + questions[index]["title"];
+            qwrap.appendChild(question);
 
-// storing the answers in HTML
-let output = [];
+            // addign options for the qiestions with radio buttons and labelign
+            for (let oindex in questions[index]["choices"]){
+                //adding the label tag
+                let label = document.createElement('label');
+                qwrap.appendChild(label);
 
-// for each question
-questions.forEach(
+                // adding the option tag
+                let option = document.createElement("input");
+                option.type = "radio";
+                option.index = oindex;
+                option.required = true;
+                option.classList.add("oquiz");
 
+                //radio button group shares the same name
+                option.name = "quiz-" + number;
+                label.appendChild(option);
 
-)
+                //adding text for choices
+                let otext = document.createTextNode(questions[index]["choices"][oindex]);
+                label.appendChild(otext);
+            
+            }
 
+            //Adding created question to the HTML quiz
+            wrapper.appendChild(qwrap);
+
+        }
+
+        //Adding submit button and event handler to the quiz wrapper
+        let submitButton = document.createElement("input");
+        submitButton.type = "submit";
+        wrapper.appendChild(submitButton);
+        wrapper.addEventListener("submit",quiz.submit);
+
+    },
+
+    //this will handle calculation when user submits a quiz:
+    submit: function(event){
+        //not allowing the form to be submitted
+        event.preventDefault();
+        event.stopPropagation();
+
+        let selected = document.querySelectorAll(".oquiz:checked");
+
+        //getting the score
+        let score = 0;
+        for (let index in questions){
+            //comparing selected answer with the answer in the file
+            if (selected.value == questions["answer"]){
+                score++;
+            }
+        }
+
+        //calculating scores
+        let total = selected.length;
+        let percent = score/total;
+
+         // Update and show the score
+        let html = "<h1>";
+            if (percent>=0.7) {
+            html += "WELL DONE!";
+            } else if (percent>=0.4) {
+            html += "NOT BAD!";
+            } else {
+            html += "TRY AGAIN!";
+            }
+            html += "</h1>";
+            html += "<div>You scored " + score + " out of " + total + ".</div>";
+            document.getElementById("quiz-wrap").innerHTML = html;
+
+    }
 
 };
 
-//
-function showResuls(){};
+/* [INIT] */
+startButton.addEventListener("click", quiz.create);
+
+
+startButton.addEventListener("hover", counter);
+// startButton.addEventListener("click",startQuiz);
+
+    //time count starts from 75 and minuses every sec
+    function counter() {
+                        var counter = 76;
+                                setInterval(function(){
+                                      if (counter ==0 ) {clearInterval(this)}
+                                         else {timeCount.textContent=--counter};
+                                }, 1000);
+                         };
+                         counter();
+    
 
 
 
-// 1) user opens the page with a start button;
+
+
+
+// let timeCount = document.querySelector("#timeCount");
+
+// let q = document.querySelector(".question");
+// let r = document.querySelector("#result");
+// let submitButton = document.querySelector("#submit");
+
+
+
+
+
+
+// // //listening to start the quiz
+// startButton.addEventListener("click",startButton);
+
+// //adding a quiz question function 
+// function startQuiz(){
+//     //time count starts from 75 and minuses every sec
+//     function counter() {
+//         var counter = 76;
+//         setInterval(function(){
+//             if (counter ==0 ) {clearInterval(this)}
+//             else {timeCount.textContent=--counter};
+//         }, 1000);
+//      };
+//     counter();
+
+// // storing the answers in HTML
+// let output = [];
+
+// // for each question
+// questions.forEach(
+
+
+// )
+
+
+// };
+
+// //
+// function showResuls(){};
+
+
+
+// 1) user opens the page with a start button; done
 // a. On the page there is a link to another html file - Vie scores
 // b. On the page there is a let timeCount = 75;
 // 2) User click startButton, question and 1  answer is presented
@@ -155,3 +278,105 @@ function showResuls(){};
 
 // - - -
 // © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+
+
+
+
+
+
+//  possible solution ? 
+
+/* [QUIZ ENGINE] */
+// var quiz = {
+//   draw : function () {
+//   // quiz.draw() : draw the quiz
+
+//     // Fetch the HTML quiz wrapper
+//     var wrapper = document.getElementById("quiz-wrap");
+
+//     // Loop through all the questions
+//     // Create all the necessary HTML elements
+//     for (var index in questions) {
+//       var number = parseInt(index) + 1; // The current question number
+//       var qwrap = document.createElement("div"); // A div wrapper to hold this question and options
+//       qwrap.classList.add("question"); // CSS class, for cosmetics
+
+//       // The question - <h1> header
+//       var question = document.createElement("h1");
+//       question.innerHTML = number + ") " + questions[index]['q'];
+//       qwrap.appendChild(question);
+
+//       // The options - <input> radio buttons and <label>
+//       for (var oindex in questions[index]['o']) {
+//         // The <label> tag
+//         var label = document.createElement("label");
+//         qwrap.appendChild(label);
+
+//         // The <option> tag
+//         var option = document.createElement("input");
+//         option.type = "radio";
+//         option.value = oindex;
+//         option.required = true;
+//         option.classList.add("oquiz"); // Will explain this later in function submit below
+
+//         // Remember that a radio button group must share the same name
+//         option.name = "quiz-" + number;
+//         label.appendChild(option);
+
+//         // Add the option text
+//         var otext = document.createTextNode(questions[index]['o'][oindex]);
+//         label.appendChild(otext);
+//       }
+
+//       // Finally, add this question to the main HTML quiz wrapper
+//       wrapper.appendChild(qwrap);
+//     }
+
+//     // Attach submit button + event handler to the quiz wrapper
+//     var submitbutton = document.createElement("input");
+//     submitbutton.type = "submit";
+//     wrapper.appendChild(submitbutton);
+//     wrapper.addEventListener("submit", quiz.submit);
+//   },
+
+//   submit : function (evt) {
+//   // quiz.submit() : Handle the calculations when the user submits to quiz
+
+//     // Stop the form from submitting
+//     evt.preventDefault();
+//     evt.stopPropagation();
+
+//     // Remember that we added an "oquiz" class to all the options?
+//     // We can easily get all the selected options this way
+//     var selected = document.querySelectorAll(".oquiz:checked");
+
+//     // Get the score
+//     var score = 0;
+//     for (var index in questions) {
+//       if (selected[index].value == questions[index]['a']) {
+//         score++;
+//       }
+//     }
+
+//     // We can calculate the score now
+//     var total = selected.length;
+//     var percent = score / total ;
+
+//     // Update and show the score
+//     // Instead of creating elements, we can also directly alter the inner HTML
+//     var html = "<h1>";
+//     if (percent>=0.7) {
+//       html += "WELL DONE!";
+//     } else if (percent>=0.4) {
+//       html += "NOT BAD!";
+//     } else {
+//       html += "TRY HARDER!";
+//     }
+//     html += "</h1>";
+//     html += "<div>You scored " + score + " out of " + total + ".</div>";
+//     document.getElementById("quiz-wrap").innerHTML = html;
+//   }
+// };
+
+// /* [INIT] */
+// window.addEventListener("load", quiz.draw);
