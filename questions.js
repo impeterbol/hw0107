@@ -14,22 +14,20 @@ let questions = [
     answer: "parentheses"
   },
   {
-   title: "The condition in an if / else statement is enclosed within ____.",
-   choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-   answer: "parentheses"
+   title: "This is question number 3",
+   choices: ["answer 1", "answer 2", "answer 3", "answer 4"],
+   answer: "answer 1"
   },
   {
-    title: "The condition in an if / else statement is enclosed within ____.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-    answer: "parentheses"
+    title: "How about this question?",
+    choices: ["probably", "maybe", "no way", "let me try"],
+    answer: "maybe"
    },
    {
-    title: "The condition in an if / else statement is enclosed within ____.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-    answer: "parentheses"
+    title: "Last but no the least",
+    choices: ["haha", "funny", "you got it", "play better"],
+    answer: "play better"
    }
   
 ];
 
-
-// * The length of the array in `questions.js` determines the length of play. Fifteen seconds per question is a good estimate, so 5 questions will result in a length of play of 75 seconds.
