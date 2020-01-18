@@ -10,23 +10,23 @@ let questions = [
   },
   {
     title: "The condition in an if / else statement is enclosed within ____.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
+    choices: ["quotes", `curly brackets`, "parentheses", "square brackets"],
     answer: "parentheses"
   },
   {
-   title: "This is question number 3",
-   choices: ["answer 1", "answer 2", "answer 3", "answer 4"],
-   answer: "answer 1"
+   title: "Which built-in method returns the calling string value converted to upper case?",
+   choices: ["toUpperCase()", "toUpper()", "changeCase(case)", `None of the above`],
+   answer: "toUpperCase()"
   },
   {
-    title: "How about this question?",
-    choices: ["probably", "maybe", "no way", "let me try"],
-    answer: "maybe"
+    title: "Which of the following function of Array object removes the last element from an array and returns that element?",
+    choices: ["pop()", "push()", "join()", "map()"],
+    answer: "pop()"
    },
    {
-    title: "Last but no the least",
-    choices: ["haha", "funny", "you got it", "play better"],
-    answer: "play better"
+    title: "Which of the following is true about variable naming conventions in JavaScript?",
+    choices: [`JavaScript variable names must begin with a letter or the underscore character`, `JavaScript variable names are case sensitive`, `Both of the above`, `None of the above`],
+    answer: `Both`
    }
   
 ];
