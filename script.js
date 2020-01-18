@@ -3,6 +3,7 @@ var timeCounter = document.querySelector("#counter");
 var inputField = document.querySelector("#inputField1");
 var saveHighscoresBtn = document.querySelector("#saveHighScores");
 var restartBtn = document.querySelector("#restartQuiz");
+var darkModeBtn = document.querySelector("#darkMode");
 
 // user's initial position in the quiz
 var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, correct = 0;
@@ -11,6 +12,9 @@ var selections=[];
 var test = document.getElementById("test");
 var testStatus = document.getElementById("testStatus");
 // question = 0;
+
+  // adding darkmode
+
 
  inputField.style.display="none";
  saveHighscoresBtn.style.display="none";
@@ -140,5 +144,6 @@ function countTime() {
   counterFunction();
 
 
+  
  
 };
