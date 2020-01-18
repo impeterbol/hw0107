@@ -2,6 +2,8 @@ var sBtn = document.querySelector("#startBtn");
 var timeCounter = document.querySelector("#counter");
 var inputField = document.querySelector("#inputField1");
 var saveHighscoresBtn = document.querySelector("#saveHighScores");
+var restartBtn = document.querySelector("#restartQuiz");
+var darkModeBtn = document.querySelector("#darkMode");
 
 // user's initial position in the quiz
 var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, correct = 0;
@@ -11,16 +13,21 @@ var test = document.getElementById("test");
 var testStatus = document.getElementById("testStatus");
 // question = 0;
 
+  // adding darkmode
+
+
  inputField.style.display="none";
  saveHighscoresBtn.style.display="none";
+ restartBtn.style.display="none";
 
 sBtn.addEventListener("click", () => {
   // removing the start button
   sBtn.style.display = "none";
  
 
-  //starting to populate first question
+  //starting the timer
   countTime();
+  //starting to populate first question
   renderQuiz();
 
 
@@ -51,8 +58,14 @@ function renderQuiz() {
     // resets the variable to allow users to restart the test
     pos = 0;
     correct = 0;
+    
+    restartBtn.style.display="block";
+ 
     // stops rest of renderQuestion function running when test is completed
     return false;
+
+ 
+
   }
 
   var newStatus =  testStatus.innerHTML;
@@ -97,11 +110,11 @@ var choices = document.getElementsByName('choices');
     for (var i = 0; i < choices.length; i++) {
           if (choices[i].checked) {
            let userChoice = choices[i].value;
-           console.log(userChoice);
+           
            if (userChoice === questions[pos]['answer']){
             //each time there is a correct answer this value increases
             correct++;
-            console.log(correct);
+          
           }
           }
 
@@ -109,22 +122,16 @@ var choices = document.getElementsByName('choices');
 
     }
  
- // checks if answer matches the correct choice
-    // if (choice == questions[pos]['answer']){
-    //   //each time there is a correct answer this value increases
-    //   correct++;
-    //   console.log(correct);
-    // }
-      // changes position of which character user is on
+
       pos++;
-      console.log(pos);
+    
 
        // then the renderQuiz function runs again to go to next question
        renderQuiz();
 
 };
 
-
+// counter
 function countTime() {
   function counterFunction() {
     var counter = 76;
@@ -135,5 +142,8 @@ function countTime() {
 
   };
   counterFunction();
-  //add a start over button
+
+
+  
+ 
 };

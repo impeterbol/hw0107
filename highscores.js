@@ -1,7 +1,10 @@
-
     var scores = localStorage.getItem('correct answer');
     var name = localStorage.getItem ('user name');
 
-    var highscores = document.getElementById("highscores1");
+    var highscoresName = document.getElementById("highscoresName");
+    var highscoresScore = document.getElementById("highscoresScore");
 
-    highscores.append('<p>' + name + scores + '</p>');
+
+
+highscoresName.append(name);
+highscoresScore.append(scores);
